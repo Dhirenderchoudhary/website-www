@@ -13,6 +13,7 @@ import {
   USER_STATES,
 } from '../constants/user-status';
 import apiRequest from '../utils/api-request';
+import { getUTCMidnightTimestampFromDate } from '../utils/date-conversion';
 
 export default class StatusController extends Controller {
   @service featureFlag;
@@ -71,8 +72,8 @@ export default class StatusController extends Controller {
 
     const requestBody = {
       type: 'OOO',
-      from,
-      until,
+      from: getUTCMidnightTimestampFromDate(from),
+      until: getUTCMidnightTimestampFromDate(until),
       reason,
     };
 
